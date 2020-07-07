@@ -6,8 +6,11 @@
 #    By: bstrydom <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/07 15:51:14 by bstrydom          #+#    #+#              #
-#    Updated: 2020/07/07 15:52:14 by bstrydom         ###   ########.fr        #
+#    Updated: 2020/07/07 16:20:04 by bstrydom         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+name= 'whoami'
 
-ldapwhoami 2>$1 | tail -n 1 | sed "s/^,//"
+ldapsearch -x -L "(uid=$name)" dn | grep "^dn:" | sort -r --ignore-case | cut -c5-999
+
+
